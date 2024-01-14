@@ -2,7 +2,9 @@
 function solveEquation(a, b, c) {
   let arr = [];
   let discr = b ** 2 - 4 * a * c;
-  if (discr > 0) {
+  if (a === 0) {
+    return 'на ноль делить нельзя';
+  } else if (discr > 0) {
     let root1 = (-b + Math.sqrt(discr)) / (2 * a);
     let root2 = (-b - Math.sqrt(discr)) / (2 * a);
     arr.push(root1, root2);
@@ -13,7 +15,7 @@ function solveEquation(a, b, c) {
   return arr;
 }
 
-solveEquation(1, 2, 3);
+solveEquation(0, 2, 3);
 
 
 
