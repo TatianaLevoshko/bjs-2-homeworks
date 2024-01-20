@@ -15,7 +15,7 @@ function getArrayParams(...arr) {
   const min = Math.min(...arr);
   const max = Math.max(...arr);
   const sum = arr.reduce((a, b) => (a + b)) / arr.length;
-  const avg = number((sum).toFixed(2));
+  const avg = Number((sum).toFixed(2));
   
 
   return { min: min, max: max, avg: avg };
