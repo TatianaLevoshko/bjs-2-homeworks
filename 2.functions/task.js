@@ -1,9 +1,9 @@
 
 "use strict";
 const arr = [
-  [10, 6, 23],
-  [3, 48, 22],
-  [11, 8, 6],
+  [-99, 99, 10],
+  [1, 2, 3, -100, 10],
+  [5],
 ];
 
 function getArrayParams(...arr) {
@@ -20,7 +20,6 @@ function getArrayParams(...arr) {
 
   return { min: min, max: max, avg: avg };
 }
-
 
 
 
