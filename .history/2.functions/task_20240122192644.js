@@ -1,4 +1,4 @@
-
+"use strict";
 
 const arr = [
   [-99, 99, 10],
