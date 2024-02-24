@@ -1,0 +1,1 @@
+class PrintEditionItem{name, releaseDate, pagesCount, }
