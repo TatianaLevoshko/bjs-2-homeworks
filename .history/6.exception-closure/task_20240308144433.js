@@ -1,7 +1,7 @@
 ﻿// Задача 1. Форматирование чисел
 
 function parseCount(value) {
-	const result = Number.parseFloat(value);
+	const result = Number.parseFloat(count);
 	if (!result) {
 		throw new Error("Невалидное значение");
 	}
