@@ -1,0 +1,3 @@
+﻿function parseCount() {
+	Number.parseFloat
+}
