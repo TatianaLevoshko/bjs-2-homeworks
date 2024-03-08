@@ -2,7 +2,7 @@
 
 function parseCount(value) {
 	let num = Number.parseFloat(value)
-  		if (isNaN(num)) {
+  if (isNaN(num)){
     throw new Error('Невалидное значение');
 	}
 	return num;										
