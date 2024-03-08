@@ -24,7 +24,7 @@ class Triangle {
 		this.b = b;
 		this.c = c;
 		
-		if ((a + b) <= c || (a + c) <= b || (b + c) <= a) {
+		if ((a + b) <= c || (a + c) <= b || b + c <= a) {
 			throw new Error('Треугольник с таким отклонением не существует');
 		}
 		get perimeter() {

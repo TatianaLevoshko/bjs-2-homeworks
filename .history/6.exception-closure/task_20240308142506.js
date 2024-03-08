@@ -1,9 +1,9 @@
 ﻿// Задача 1. Форматирование чисел
 
 function parseCount(value) {
-	let num = Number.parseFloat(value);
-	if (Number.isNaN(num)) {								
-		throw new Error('Недопустимое значение');
+	let num = Number.parseFloat(value)  			//парсинг
+	if (isNaN(num)) {								
+		throw new Error('Недопустимое значение')	
 	}
 	return num;										
 }
@@ -24,8 +24,8 @@ class Triangle {
 		this.b = b;
 		this.c = c;
 		
-		if ((a + b) <= c || (a + c) <= b || (b + c) <= a) {
-			throw new Error('Треугольник с таким отклонением не существует');
+		if (a + b <= c || a + c <= b || b + c <= a) {
+			throw new Error('Треугольник с таким отклонением не существует')
 		}
 		get perimeter() {
 			return this.a + this.b + this.c;
