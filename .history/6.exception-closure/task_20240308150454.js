@@ -31,9 +31,9 @@ class Triangle {
 			return this.a + this.b + this.c;
 		}
 		get area() {
-			let s = this.perimeter / 2
-			return Number(Math.sqrt(s* (s - this.a) * (s - this.b) * (s - this.c)).toFixed(3));
-		  }
+			const s = this.perimeter / 2;
+			const area = Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c));
+			return area.toFixed(3);
 		}
 	}
 }
