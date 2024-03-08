@@ -44,10 +44,9 @@ class Triangle {
 
 function getTriangle(a, b, c) {
 	try {
-		return new Triangle(a, b, c); //новый объект треугольника;
+		return new Triangle(a, b, c); //новый объект треугольника;	
 	} catch (error) {
 		return {
-		//возврат объекта с геттерами area и perimeter
 			get perimeter() {
 			return 'Ошибка! Треугольник не существует';
 			},
@@ -55,5 +54,5 @@ function getTriangle(a, b, c) {
 			get area() {
 			  return 'Ошибка! Треугольник не существует';
 			}	
-		}
-	}
+			}	
+}
