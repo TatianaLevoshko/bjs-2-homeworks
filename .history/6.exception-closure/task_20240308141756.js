@@ -25,15 +25,19 @@ class Triangle {
 		this.c = c;
 		
 		if (a + b <= c || a + c <= b || b + c <= a) {
+		// Если сумма двух сторон меньше или равна третьей стороне, накой треугольник не существует
 			throw new Error('Треугольник с таким отклонением не существует')
+			// Выброс ошибки
 		}
 		get perimeter() {
 			return this.a + this.b + this.c;
+			// должен вернуть периметр треугольника
 		}
 		get area() {
 			const s = this.perimeter / 2;
 			const area = Math.sqrt(s * (s - this.a) * (s - this.b) * (s - this.c));
 			return area.toFixed(3);
+			// должен вернуть площадь треугольника
 		}
 	}
 }
