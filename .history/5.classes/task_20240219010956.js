@@ -1,1 +1,0 @@
-class PrintEditionItem{name, releaseDate}

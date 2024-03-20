@@ -1,5 +1,0 @@
-class AlarmClock {
-	constructor() {
-		this.
-	}	
-}

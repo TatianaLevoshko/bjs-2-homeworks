@@ -1,210 +1,117 @@
 class PrintEditionItem {
-	constructor(name, releaseDate, pagesCount) {
-		this.name = name;
-		this.releaseDate = releaseDate;
-		this.pagesCount = pagesCount;
-		this.state = 100;
-		this.type = null;
-		this.fix = function() {
-			this.state *= 1.5;
-		};
-	}
-	set state(newState) {
-		if (newState < 0) {
-			this._state = 0;
-		} else if (newState > 100) {
-			this._state = 100;
-		} else {
-			this._state = newState;
-		}
-	}
-	get state() {
-		return this._state;
-	}
+    constructor(name, releaseDate, pagesCount) {
+        this.name = name;
+        this.releaseDate = releaseDate;
+        this.pagesCount = pagesCount;
+        this.state = 100; //  Начальное значение состояния.
+        this.type = null;
+    }
+
+    fix() {
+        let newState = this.state * 1.5; // Состояние умножается на 1.5.
+        if (newState > 100) {
+            newState = 100; // Если новое состояние больше 100, оно устанавливается на 100.
+        }
+        this._state = newState; // Устанавливается новое значение состояния.
+    }
+
+    set state(newState) {
+        // Сеттер для установки состояния, проверяющий его на допустимость.
+        if (newState < 0) {
+            this._state = 0; //  Если новое состояние меньше 0, устанавливается на 0.
+        } else if (newState > 100) {
+            this._state = 100; // Если новое состояние больше 100, устанавливается на 100.
+        } else {
+            this._state = newState; // В остальных случаях устанавливается переданное значение состояния.
+        }
+    }
+
+    get state() {
+        return this._state; // Геттер для получения значения состояния.
+    }
 }
 
 class Magazine extends PrintEditionItem {
-	constructor(name, releaseDate, pagesCount) {
-		super(name, releaseDate, pagesCount);
-		this.type = "magazine";
-	}
+    constructor(name, releaseDate, pagesCount) {
+        super(name, releaseDate, pagesCount);
+        this.type = 'magazine'; // Устанавливается тип журнала.
+    }
 }
 
 class Book extends PrintEditionItem {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(name, releaseDate, pagesCount);
-		this.author = author;
-		this.type = "book";
-	}
+    constructor(author, name, releaseDate, pagesCount) {
+        super(name, releaseDate, pagesCount);
+        this.author = author; // Устанавливается автор книги.
+        this.type = 'book'; // Устанавливается тип книги.
+        this.state = 100; // Устанавливается начальное значение состояния.
+    }
 }
 
 class NovelBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(author, name, releaseDate, pagesCount);
-		// this.state = 100;
-		this.type = "novel";
-	}
+    constructor(author, name, releaseDate, pagesCount) {
+        super(name, releaseDate, pagesCount);
+        this.author = author; // Устанавливается автор книги.
+        this.type = 'novel'; // Устанавливается тип романа.
+    }
 }
 
 class FantasticBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(author, name, releaseDate, pagesCount);
-		// this.state = 100;
-		this.type = "fantastic";
-	}
+    constructor(author, name, releaseDate, pagesCount) {
+        super(name, releaseDate, pagesCount);
+        this.author = author; // Устанавливается автор книги.
+        this.type = 'fantastic'; // Устанавливается тип фантастики.
+    }
 }
 
 class DetectiveBook extends Book {
-	constructor(author, name, releaseDate, pagesCount) {
-		super(author, name, releaseDate, pagesCount);
-		// this.state = 100;
-		this.type = "detective";
-	}
+    constructor(author, name, releaseDate, pagesCount) {
+        super(name, releaseDate, pagesCount);
+        this.author = author; // Устанавливается автор книги.
+        this.type = 'detective'; // Устанавливается тип детектива.
+    }
 }
-
-//проверка задачи 1
-
-/*
-const sherlock = new PrintEditionItem(
-  "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
-  2019,
-  1008
- );
-
- console.log(sherlock.releaseDate); //2019
- console.log(sherlock.state); //100
- sherlock.fix();
- console.log(sherlock.state); //100
-
-const picknick = new FantasticBook(
-	"Аркадий и Борис Стругацкие",
-	"Пикник на обочине",
-	1972,
-	168
-);
-
-console.log(picknick.author); //"Аркадий и Борис Стругацкие"
-picknick.state = 10;
-console.log(picknick.state); //10
-picknick.fix();
-console.log(picknick.state); //15
-*/
 
 //Задача2
 
 class Library {
-	constructor(name, books) {
-		this.name = name;
-		this.books = [];
+    constructor(name) {
+        this.name = name; // Устанавливается имя библиотеки.
+        this.books = []; // Инициализируется пустой массив для хранения книг.
+    }
 
-		this.addBook = function(book) {
-			if (book.state > 30) {
-				this.books.push(book);
-			}
-		}
+    addBook(book) {
+        if (book.state > 30) {
+            this.books.push(book); // Книга добавляется в библиотеку, если ее состояние больше 30.
+        }
+    }
 
-		this.findBookBy = function(type, value) {
-			const findResult = this.books.find((item) => item[type] === value);
-			return findResult || null;
-		}
+    findBookBy(type, value) {
+        return this.books.find(book => book[type] === value) || null; // Поиск книги по указанному критерию.
+    }
 
-		this.giveBookByName = function(bookName) {
-			const book = this.findBookBy("name", bookName);
-			if (!book) return null;
-			this.books = this.books.filter((item) => item.name !== bookName);
-			return book;
-		}
-	}
+    giveBookByName(bookName) {
+        const index = this.books.findIndex(book => book.name === bookName); // Поиск индекса книги по имени.
+        if (index !== -1) {
+            return this.books.splice(index, 1)[0]; // Если книга найдена, она удаляется из массива и возвращается.
+        }
+        return null; // Если книга не найдена, возвращается null.
+    }
 }
 
-//проверка задачи 2
 
-/*
+const picknick = new FantasticBook(
+    "Аркадий и Борис Стругацкие",
+    "Пикник на обочине",
+    1972,
+    168
+);
+
+
 const library = new Library("Библиотека имени Ленина");
 
-library.addBook(
- new DetectiveBook(
-   "Артур Конан Дойл",
-   "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
-   2019,
-   1008
- )
-);
-library.addBook(
- new FantasticBook(
-   "Аркадий и Борис Стругацкие",
-   "Пикник на обочине",
-   1972,
-   168
- )
-);
-library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
-library.addBook(new Magazine("Мурзилка", 1924, 60));
-
-console.log(library.findBookBy("name", "Властелин колец")); //null
-console.log(library.findBookBy("releaseDate", 1924).name); //"Мурзилка"
-
-console.log("Количество книг до выдачи: " + library.books.length); //Количество книг до выдачи: 4
-library.giveBookByName("Машина времени");
-console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
-*/
-
-//Задача3
-
-class Student {
-	constructor(name, gender, age) {
-		this.name = name;
-		this.gender = gender;
-		this.age = age;
-		this.marks = {};
-
-		this.addMark = function(value, subject) {
-			if (value >= 2 && value <= 5) {
-        if (!this.marks[subject]) {
-          this.marks[subject] = [];
-        }
-        this.marks[subject].push(value);
-      } else {
-        return;
-      }
-		}
-
-		this.getAverageBySubject = function(subject) {
-			if (!this.marks[subject]) {
-				return 0;
-			} else {
-				return this.marks[subject].reduce((acc, item, index, arr) => {
-					acc += item;
-					if (index === arr.length - 1) {
-						return acc / arr.length;
-					}
-					return acc;
-				}, 0);
-			}
-		}
-
-		this.getAverage = function() {
-			let keys = Object.keys(this.marks);
-			let sum = 0;
-			for (let i = 0; i < keys.length; i++) {
-				sum += this.getAverageBySubject(keys[i]);
-			}
-			return sum / keys.length || 0;
-		}
-
-	}
-}
-
-
-//проверка задачи 3
-/*
-const student = new Student("Олег Никифоров");
-student.addMark(5, "химия");
-student.addMark(5, "химия");
-student.addMark(5, "физика");
-student.addMark(4, "физика");
-student.addMark(6, "физика"); // Оценка не добавится, так как больше 5
-student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
-student.getAverageBySubject("биология"); // Вернёт 0, так как по такому предмету нет никаких оценок.
-student.getAverage(); // Средний балл по всем предметам 4.75
-*/
+let sherlock = new DetectiveBook(
+    "Артур Конан Дойл",
+    "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
+    2019,
+    1008
+)
